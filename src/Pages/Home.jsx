@@ -3,7 +3,13 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <div className="home-container">
+    <div className="home-container"
+    style={{ 
+      backgroundImage: `url(/images/background.jpg)`, 
+      height: '100vh',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }} >
       <h1>Welcome to our store</h1>
 
       <Link to="/products" className="home-link">
