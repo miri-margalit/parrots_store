@@ -3,22 +3,22 @@ import React from "react";
 
 export default function Contact() {
   return (
-    <div>
+    <div className="contact-page">
       <h1>Contact</h1>
       <form>
         <label>
           Name:
-            <input type="text" name="name" />
+          <input type="text" name="name" className="contact-input" />
         </label>
         <br />
         <label>
           Email:
-          <input type="email" name="email" />
+          <input type="email" name="email" className="contact-input" />
         </label>
         <br />
         <label>
           Message:
-          <textarea name="message" />
+          <textarea name="message" className="contact-textarea" />
         </label>
         <br />
         <button type="submit">Send</button>
@@ -26,3 +26,4 @@ export default function Contact() {
     </div>
   );
 }
+

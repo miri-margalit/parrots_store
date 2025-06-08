@@ -2,7 +2,8 @@ import React from 'react'
 
 const About = () => {
   return (
-    <div>
+    <div className='about'>
+      <div className="about-text">
     <h1>Want a Parrot at Home?</h1>
   
     <p>At our parrot farm, we work hard to maintain a complete life cycle of parrots. Among the important stages is raising and nurturing the next generation of parrots. We invest our best efforts to create high-quality, friendly parrots that are comfortable around people.</p>
@@ -14,6 +15,10 @@ const About = () => {
     <p>A parrot at home gives children a special sense of connection. Nowadays, it is even common to conduct therapies for children with parrots, as the bond with them is warm and unique. They are funny, sweet, and loving—just what every family needs: someone to bring laughter, joy, and calm.</p>
   
     <p>We have a wide variety of parrots for sale, and you are welcome to come and choose the parrot that suits you best. If you are interested in a special breed or trained parrot for a specific purpose, You in the right place!.</p>
+    </div>
+    <div className="about-image">
+    <img src="/Images/parrot11.jpg" alt="" />
+    </div>
   </div>
   
 

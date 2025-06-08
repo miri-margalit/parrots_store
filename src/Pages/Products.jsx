@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import MyContext from '../Context/Context';
 import AddProductForm from '../Components/AddProduct';
 
-const Products = ({ parrots, cart, setCart }) => {
-  const { setParrots, currentUser } = useContext(MyContext);
+const Products = ({ parrots, setParrots, cart, setCart }) => {
+  const { currentUser } = useContext(MyContext);
   const [showForm, setShowForm] = useState(false);
 
   const addToCart = (parrot) => {
+    alert("The item has been successfully added!")
     setCart([...cart, parrot]);
   };
 
@@ -16,33 +17,40 @@ const Products = ({ parrots, cart, setCart }) => {
   };
 
   return (
-    <div>
-      <h1>Parrots</h1>
+    <div className="products-container">
+      <div className='title'>
+      <h1 >Our Parrots</h1>
+      </div>
+      
 
-      {/* רק למנהל מוצג כפתור הטופס */}
       {currentUser === "manager" && (
-        <div>
+        <div className="admin-section">
           <button onClick={() => setShowForm(!showForm)}>
             ➕ Add Product
           </button>
-          {showForm && <AddProductForm />}
+          {showForm && <AddProductForm setParrots={setParrots} parrots={parrots} />}
         </div>
       )}
 
-      {parrots.map((parrot) => (
-        <div key={parrot.id} style={{ borderBottom: "1px solid gray", paddingBottom: "10px", marginBottom: "10px" }}>
-          {currentUser === "manager" && (
-            <button onClick={() => handleDelete(parrot.id)}>🗑️</button>
-          )}
-          <h2>{parrot.name}</h2>
-          <img src={parrot.image} alt={parrot.name} style={{ width: "200px", height: "auto" }} />
-          <p>מחיר: {parrot.price} ש"ח</p>
-          <Link to={`/productdetails/${parrot.id}`}>
-            <button>more details</button>
-          </Link>
-          <button onClick={() => addToCart(parrot)}>add to Cart</button>
-        </div>
-      ))}
+      <div className="product-grid">
+        {parrots.map((parrot) => (
+          <div key={parrot.id} className="product-card">
+            {currentUser === "manager" && (
+              <button className="delete-btn" onClick={() => handleDelete(parrot.id)}>🗑️</button>
+            )}
+            <img src={parrot.image} alt={parrot.name} className="product-img" />
+            <h2>{parrot.name}</h2>
+            <p>{parrot.description}</p>
+            <p className="price">{parrot.price} ₪</p>
+            <div className="card-buttons">
+              <Link to={`/productdetails/${parrot.id}`}>
+                <button className="details-btn">More Details</button>
+              </Link>
+              <button className="cart-btn" onClick={() => addToCart(parrot)}>Add to Cart 🛒</button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

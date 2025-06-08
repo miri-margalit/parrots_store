@@ -6,13 +6,13 @@ import Products from "../Pages/Products";
 import ProductDetails from "../Pages/ProductDetails";
 import Contact from "../Pages/Contact";
 import Cart from "../Pages/Cart";
-import Result from "../Pages/Result";
 import Login from "../Pages/Login";
 import MyContext from "../Context/Context";
+import Checkout from "../Pages/Checkout";
 
 const AppRoutes = () => {
 
-  const { parrots, cart, setCart, currentUser, setCurrentUser } = useContext(MyContext);
+  const { parrots, setParrots, cart, setCart } = useContext(MyContext);
 
   return (
     <Routes>
@@ -23,6 +23,7 @@ const AppRoutes = () => {
         element={
           <Products
             parrots={parrots}
+            setParrots={setParrots}
             cart={cart}
             setCart={setCart}
           />
@@ -31,11 +32,11 @@ const AppRoutes = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/productdetails/:id" element={<ProductDetails />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/result" element={<Result />} />
+      <Route path="/result" element={<Checkout />} />
       <Route path="/login" element={<Login />} />
       <Route
         path="/checkout"
-        element={<Result cart={cart} />}
+        element={<Checkout cart={cart} />}
       />
 
       <Route path="*" element={"404 page not found"} />

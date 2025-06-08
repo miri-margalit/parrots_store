@@ -2,32 +2,38 @@ import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import MyContext from '../Context/Context';
 
+
 const ProductDetails = () => {
   const { id } = useParams();
-  const parrots = useContext(MyContext).parrots;
-  const {cart, setCart} = useContext(MyContext);
-
-  const addToCart = (parrot) => {
-    setCart([...cart, parrot]);
-  };
+  const { parrots, cart, setCart } = useContext(MyContext);
 
   const parrot = parrots.find((p) => p.id === parseInt(id));
 
+  const addToCart = (parrot) => {
+    alert("The item has been successfully added!")
+    setCart([...cart, parrot]);
+  };
+
   if (!parrot) {
-    return <div>Product not found</div>;
+    return <div className="product-not-found">Product not found</div>;
   }
 
   return (
-    <div>
-      <h1>{parrot.name}</h1>
-      <img src={parrot.image} alt={parrot.name} style={{width: "300px", height: "auto"}} />
-      <p>price: {parrot.price} NIS</p>
-      <p>Desdroption : {parrot.description}</p>
-      <p>{parrot.description}</p>
-      <button onClick={() => addToCart(parrot)}>add to Cart</button>
-
+    <div className="product-details-container">
+      <div className="product-image">
+        <img src={parrot.image} alt={parrot.name} />
+      </div>
+      <div className="product-info">
+        <h1>{parrot.name}</h1>
+        <p className="price">Price: {parrot.price} ₪</p>
+        <p className="description">{parrot.description}</p>
+        <button className="add-to-cart" onClick={() => addToCart(parrot)}>
+          Add to Cart
+        </button>
+      </div>
     </div>
   );
 };
 
 export default ProductDetails;
+

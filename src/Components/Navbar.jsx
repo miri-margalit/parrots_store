@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import MyContext from "../Context/Context";
 
 const Navbar = () => {
@@ -10,11 +10,12 @@ const Navbar = () => {
     setCurrentUser(null);
     localStorage.removeItem("currentUser"); 
     setShowLogout(false);
+    
   };
-  
 
   return (
-    <div style={{ position: "relative" }}>
+    <div className='nav'>
+      <img src="\logo192.png" alt="logo" className='nav-img'/>
       <Link to="/home">home</Link>
       <Link to="/about">About</Link>
       <Link to="/products">Our store</Link>
@@ -25,7 +26,7 @@ const Navbar = () => {
           onMouseLeave={() => setShowLogout(false)}
           style={{ position: "relative", cursor: "pointer" }}
         >
-          Hello to {currentUser.username}
+            Hello to { currentUser.username} 
 
           {showLogout && (
             <div 
@@ -34,7 +35,7 @@ const Navbar = () => {
                 top: "100%",
                 left: 0,
                 backgroundColor: "white",
-                border: "1px solid black",
+                border: "1px solid blue",
                 padding: "5px",
                 zIndex: 10,
                 cursor: "pointer"
@@ -52,6 +53,8 @@ const Navbar = () => {
       )}
 
       <Link to="/cart">Cart</Link>
+
+      
     </div>
   )
 }
