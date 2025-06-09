@@ -218,6 +218,7 @@
   border-radius: 8px;
   font-size: 16px;
   direction: ltr;
+  box-sizing: border-box;
 }
 
 .login-container button {
